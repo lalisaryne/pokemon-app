@@ -18,8 +18,6 @@ class Pokemon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-   // print("_print pokemon list: ${listPokemon[1]}");
     listPokemon.forEach((element) {
       if(element == "Pikachu") {
         print("_print pika pika");
@@ -28,14 +26,23 @@ class Pokemon extends StatelessWidget {
       }
     });
 
-    return MaterialApp( // <-- Tambahkan MaterialApp di sini
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text("My Pokemon App"),
         ),
-        body: Container(
-          color: Colors.white,
+        body: ListView.builder(
+          itemCount: listPokemon.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                  listPokemon[index],
+                  style: TextStyle(fontSize: 20),
+              ),
+            );
+          },
         ),
       ),
     );
